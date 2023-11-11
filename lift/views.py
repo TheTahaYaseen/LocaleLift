@@ -10,7 +10,7 @@ def home_view(request):
 def register_view(request):
 
     form = UserCreationForm()
-    errors = ""
+    error = ""
 
     if request.method == "POST":
         form = UserCreationForm(request.POST)
@@ -21,7 +21,7 @@ def register_view(request):
             login(request, user)
             return redirect("home")
         else:
-            errors = form.errors.as_text()
+            error = form.errors.as_text()
 
-    context = {"form": form}
+    context = {"form": form, "error": error}
     return render(request, "lift/register.html", context)
