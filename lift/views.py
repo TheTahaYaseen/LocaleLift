@@ -51,3 +51,10 @@ def login_view(request):
 
     context = {"error": error}
     return render(request, "lift/login.html", context)
+
+def logout_view(request):
+
+    if request.user.is_authenticated:
+        logout(request)
+
+    return redirect("home")
