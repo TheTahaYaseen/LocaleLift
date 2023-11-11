@@ -9,4 +9,4 @@ def home_view(request):
 def register_view(request):
     form = UserCreationForm()
     context = {"form": form}
-    return render(request, "lift/home.html", context)
+    return render(request, "lift/register.html", context)
