@@ -4,10 +4,13 @@ from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 
 # Create your views here.
+
+# Home View
 def home_view(request):
     context = {}
     return render(request, "lift/home.html", context)
 
+# Auth Views
 def register_view(request):
 
     form = UserCreationForm()
@@ -58,3 +61,16 @@ def logout_view(request):
         logout(request)
 
     return redirect("home")
+
+# Business Profile Views
+def create_business_profile_view(request):
+    context = {}
+    return render(request, "lift/business_profile_form.html", context)
+
+def update_business_profile_view(request, primary_key):
+    context = {}
+    return render(request, "lift/business_profile_form.html", context)
+
+def delete_business_profile_view(request, primary_key):
+    context = {}
+    return render(request, "lift/delete.html", context)
