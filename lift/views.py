@@ -66,7 +66,9 @@ def logout_view(request):
 
 # Business Profile Views
 def create_business_profile_view(request):
-    form = BusinessProfileForm()    
+    form = BusinessProfileForm()   
+    for field in form:
+        field.label = field.label.title() 
     context = {"form": form}
     return render(request, "lift/business_profile_form.html", context)
 
