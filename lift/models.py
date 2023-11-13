@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from phonenumber_field.modelfields import PhoneNumberField
+from location_field.models.plain import PlainLocationField
 
 # Create your models here.
 class BusinessProfileCategory(models.Model):
@@ -15,10 +16,10 @@ class BusinessProfile(models.Model):
     email = models.EmailField()
     phone_number = PhoneNumberField(blank=True, null=True)
     category = models.ForeignKey(BusinessProfileCategory, on_delete=models.SET_NULL, null=True)
-    weekdays_starting_hour = models.TimeField()
-    weekdays_ending_hour = models.TimeField()
-    weekends_starting_hour = models.TimeField()
-    weekends_ending_hour = models.TimeField()
+    weekdays_starting_hour = models.TimeField(blank=True, null=True)
+    weekdays_ending_hour = models.TimeField(blank=True, null=True)
+    weekends_starting_hour = models.TimeField(blank=True, null=True)
+    weekends_ending_hour = models.TimeField(blank=True, null=True)
     logo = models.FileField(upload_to="business_profile_logos/")
     cover_photo = models.FileField(upload_to="business_profile_logos/")
     website = models.URLField(blank=True, null=True)
@@ -28,7 +29,6 @@ class BusinessProfile(models.Model):
     instagram = models.URLField(blank=True, null=True)
     github = models.URLField(blank=True, null=True)
     stackoverflow = models.URLField(blank=True, null=True)
-    location_lattiude = models.DecimalField(max_digits=9, decimal_places=6)
-    location_longitude = models.DecimalField(max_digits=9, decimal_places=6)
+    location = PlainLocationField(based_fields=['city'], zoom=7)
     owner = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
 
