@@ -3,6 +3,8 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 
+from .forms import BusinessProfileForm
+
 # Create your views here.
 
 # Home View
@@ -64,7 +66,8 @@ def logout_view(request):
 
 # Business Profile Views
 def create_business_profile_view(request):
-    context = {}
+    form = BusinessProfileForm()    
+    context = {"form": form}
     return render(request, "lift/business_profile_form.html", context)
 
 def update_business_profile_view(request, primary_key):
