@@ -1,7 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
 from phonenumber_field.modelfields import PhoneNumberField
-from django.contrib.gis.db.models import PointField
 
 # Create your models here.
 class BusinessProfileCategory(models.Model):
@@ -21,5 +20,7 @@ class BusinessProfile(models.Model):
     cover_photo = models.FileField(upload_to="business_profile_logos/")
     website = models.URLField(blank=True, null=True)
     social_media = models.JSONField(blank=True, null=True)
-    location = PointField(blank=True, null=True)
+    location_lattiude = models.DecimalField(max_digits=9, decimal_places=6)
+    location_longitude = models.DecimalField(max_digits=9, decimal_places=6)
     owner = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+
